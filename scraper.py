@@ -1,9 +1,11 @@
+#!/usr/bin/env python
 import requests
+import urllib # for urlencode
 import lxml
 from lxml.html import parse
 import csv
 import sys
-GOOGLE_URL = "http://www.google.com/search?q="
+GOOGLE_URL = "http://www.google.com/search?"
 IN_FILE_PATH = "/home/wesley/Downloads/d3schools.csv"
 OUT_FILE_PATH = "/home/wesley/Downloads/scraper_result.csv"
 
@@ -54,7 +56,10 @@ def get_athletics_site(school_name):
     return get_top_google_result(search_query)
 
 def get_google_results(search_query):
-    search_url = GOOGLE_URL + search_query
+    query = urllib.urlencode({
+            "q" : search_query
+            }) # make sure it's encoded
+    search_url = GOOGLE_URL + query
     doc = parse(search_url).getroot()
     res_headlines = doc.cssselect('h3.r a')  #get all the <a> tags from <h3 class='r'
     return res_headlines
