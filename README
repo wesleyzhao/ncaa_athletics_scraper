@@ -1,1 +1,9 @@
 Will read from CSV files
+
+Either edit the filepaths (INPUT_FILE_PATH, OUTPUT_FILEPATH) in scraper.py
+or use the following syntax:
+
+>> python scraper.py /path/to/input.csv /path/to/output.csv
+
+If you fail to do so, or use the wrong syntax, the default filepaths will
+be used.
